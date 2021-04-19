@@ -114,7 +114,7 @@ public class DatosIngresados extends javax.swing.JPanel {
     public javax.swing.JTextField jtextCedula;
     public javax.swing.JTextField jtextHoras;
     public javax.swing.JTextField jtextNombre;
-    private javax.swing.JTextField jtextTelefono;
+    public javax.swing.JTextField jtextTelefono;
     public javax.swing.JTextField jtextValorHora;
     // End of variables declaration//GEN-END:variables
 }
