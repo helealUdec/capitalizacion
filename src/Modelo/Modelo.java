@@ -22,7 +22,7 @@ public class Modelo {
         String[] datos = {cedula, nombre, apellido, telefono, String.valueOf(capInicial), String.valueOf(horas), String.valueOf(pago)};
         listaDatos.add(datos);
         JOptionPane.showMessageDialog(null, "Datos guardados");
-        JOptionPane.showMessageDialog(null, "Debe pagarle: $ " +pago + "  Al empleado: " + nombre);
+        JOptionPane.showMessageDialog(null, "Debe pagarle: $ " + pago + "  Al empleado: " + nombre);
         datosIngresados.jtextCedula.setText("");
         datosIngresados.jtextNombre.setText("");
         datosIngresados.jtextApellido.setText("");
@@ -48,17 +48,41 @@ public class Modelo {
 
         return pago;
     }
-    
+
     public void llenarTabla(DatosUsuario datosUsuario) {
         DefaultTableModel modelo = (DefaultTableModel) datosUsuario.jtableDatos.getModel();
         int n = listaDatos.size();
-        for(int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             modelo.addRow(listaDatos.get(i));
         }
     }
-    
+
     public void busqueda(DatosUsuario datosUsuario) {
+        String busqueda = datosUsuario.jtextBuscar.getText();
+        boolean encontrado = false;
+        int n = listaDatos.size();
+        DefaultTableModel modelo = (DefaultTableModel) datosUsuario.jtableDatos.getModel();
+        for (int i = 0; i < n; i++) {
+            modelo.removeRow(i);
+        }
+        if ("".equals(busqueda)) {
+            JOptionPane.showMessageDialog(null, "Diguite una busqueda");
+            llenarTabla(datosUsuario);
+        } else {
+
+            int m = listaDatos.get(0).length;
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
+                    if (listaDatos.get(i)[j].equals(busqueda)) {
+                        encontrado = true;
+                        modelo.addRow(listaDatos.get(i));
+                        continue;
+                    } 
+                }
+            }
+        }
         
+        if(!encontrado) JOptionPane.showMessageDialog(null, "Dato no encontrado");
     }
 
 }

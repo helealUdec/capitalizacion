@@ -49,7 +49,7 @@ public class Controlador implements ActionListener {
         datosUsuario.setBounds(0, 0, 700, 490);
         view.add(datosUsuario);
         datosUsuario.jbuttonAtras.addActionListener(this);
-
+        datosUsuario.jbuttonBuscar.addActionListener(this);
         // ingresar
         datosIngresados.setVisible(false);
         datosIngresados.setBounds(0, 0, 490, 490);
@@ -126,7 +126,9 @@ public class Controlador implements ActionListener {
                
         }
         
-        
+        if(e.getSource() == datosUsuario.jbuttonBuscar) {
+            modelo.busqueda(datosUsuario);
+        }
 
     }
 
