@@ -6,6 +6,7 @@ import Vista.DatosUsuario;
 import Vista.InicioApp;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JOptionPane;
 
 public class Controlador implements ActionListener {
 
@@ -48,12 +49,13 @@ public class Controlador implements ActionListener {
         datosUsuario.setBounds(0, 0, 700, 490);
         view.add(datosUsuario);
         datosUsuario.jbuttonAtras.addActionListener(this);
-        
+
         // ingresar
         datosIngresados.setVisible(false);
         datosIngresados.setBounds(0, 0, 490, 490);
         view.add(datosIngresados);
-
+        datosIngresados.jbuttonAtras.addActionListener(this);
+        datosIngresados.jbuttonIngresar.addActionListener(this);
         // ventana pricipal
         view.jbuttonIngresar.addActionListener(this);
         view.jbuttonImprimir.addActionListener(this);
@@ -77,6 +79,29 @@ public class Controlador implements ActionListener {
         }
 
         // boton de atras en otras interfaces
+        if (e.getSource() == datosIngresados.jbuttonAtras || e.getSource() == datosUsuario.jbuttonAtras) {
+            datosUsuario.setVisible(false);
+            datosIngresados.setVisible(false);
+            view.jPanel1.setVisible(true);
+            view.setSize(width - 2, height);
+        }
+
+        //Ingresar datos
+        if (e.getSource() == datosIngresados.jbuttonIngresar) {
+            String cedula = datosIngresados.jtextCedula.getText();
+            String nombre = datosIngresados.jtextNombre.getText();
+            String apellido = datosIngresados.jtextApellido.getText();
+            String telefono = datosIngresados.jtextTelefono.getText();
+            String horas = datosIngresados.jtextHoras.getText();
+            String capInicial = datosIngresados.jtextValorHora.getText();
+            
+            if ("".equals(cedula) || "".equals(nombre) || "".equals(apellido)  || "".equals(telefono) || "".equals(horas) || "".equals(capInicial)) {
+                JOptionPane.showMessageDialog(null, "Por favor rellene los campos");
+            } else {
+                 modelo.almacenarDatos(datosIngresados);
+            }
+        }
+
     }
 
 }
