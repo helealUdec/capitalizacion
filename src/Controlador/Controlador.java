@@ -66,16 +66,19 @@ public class Controlador implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // cambio entre paneles de la vista pricnipal
         if (e.getSource() == view.jbuttonIngresar) {
+            // para cambiar a ingresar datos
             view.jPanel1.setVisible(false);
             datosUsuario.setVisible(false);
             datosIngresados.setVisible(true);
             view.setSize(view.getWidth() - 2, 440);
 
         } else if (e.getSource() == view.jbuttonImprimir) {
+            // para cambiar a imprimir
             view.jPanel1.setVisible(false);
             datosIngresados.setVisible(false);
             datosUsuario.setVisible(true);
             view.setSize(640, 395);
+            modelo.llenarTabla(datosUsuario);
         }
 
         // boton de atras en otras interfaces
@@ -88,6 +91,7 @@ public class Controlador implements ActionListener {
 
         //Ingresar datos
         if (e.getSource() == datosIngresados.jbuttonIngresar) {
+            boolean pasar = false;
             String cedula = datosIngresados.jtextCedula.getText();
             String nombre = datosIngresados.jtextNombre.getText();
             String apellido = datosIngresados.jtextApellido.getText();
@@ -95,12 +99,34 @@ public class Controlador implements ActionListener {
             String horas = datosIngresados.jtextHoras.getText();
             String capInicial = datosIngresados.jtextValorHora.getText();
             
-            if ("".equals(cedula) || "".equals(nombre) || "".equals(apellido)  || "".equals(telefono) || "".equals(horas) || "".equals(capInicial)) {
+            // verificar para ingresar datos
+            if ("".equals(cedula) || "".equals(nombre) || "".equals(apellido) || "".equals(telefono) || "".equals(horas) || "".equals(capInicial)) {
                 JOptionPane.showMessageDialog(null, "Por favor rellene los campos");
-            } else {
-                 modelo.almacenarDatos(datosIngresados);
+            } 
+            
+            try {
+               Integer.parseInt(horas);
+               pasar = true;
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Diguite un numero de horas correcto\nejemplo ( 1 )");
+                pasar = false;
             }
+            
+            try {
+                Double.parseDouble(capInicial);
+                pasar = true;
+            } catch (NumberFormatException ex) {
+                JOptionPane.showMessageDialog(null, "Diguite un valor de horas correcto\nejemplo ( 20000 )");
+                pasar = false;
+            }
+            
+            if(pasar) {
+                 modelo.almacenarDatos(datosIngresados);
+            } 
+               
         }
+        
+        
 
     }
 

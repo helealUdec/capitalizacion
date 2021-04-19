@@ -30,7 +30,7 @@ public class DatosUsuario extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jtableDatos = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         jbuttonBuscar = new javax.swing.JButton();
         jtextBuscar = new javax.swing.JTextField();
@@ -52,18 +52,15 @@ public class DatosUsuario extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jtableDatos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Cedula", "Nombres", "Apellido", "Telefono", "Valor Hora", "Horas Trabajadas", "Sueldo"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jtableDatos);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 580, 260));
 
@@ -84,14 +81,14 @@ public class DatosUsuario extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    public javax.swing.JLabel jLabel1;
     public javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    public javax.swing.JTable jTable2;
     public javax.swing.JButton jbuttonAtras;
     public javax.swing.JButton jbuttonBuscar;
+    public javax.swing.JTable jtableDatos;
     public javax.swing.JTextField jtextBuscar;
     // End of variables declaration//GEN-END:variables
 }
